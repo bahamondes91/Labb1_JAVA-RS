@@ -1,6 +1,7 @@
 package se.iths.rest;
 
 
+import se.iths.exceptions.CustomException;
 import se.iths.entity.Student;
 import se.iths.service.StudentService;
 
@@ -23,15 +24,11 @@ public class StudentRest {
     @POST
     public Response createStudent(Student student) {
 
-        String message = "{\"Error when creating new student \"}";
         try {
             studentService.createNewStudent(student);
             return Response.ok(student).build();
         } catch (Exception e) {
-            throw new WebApplicationException(Response.status(Response.Status.BAD_REQUEST)
-                    .entity(message)
-                    .type(MediaType.APPLICATION_JSON)
-                    .build());
+            throw new CustomException("There was an error when creating a new student");
         }
     }
 
