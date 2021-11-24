@@ -28,7 +28,7 @@ public class StudentRest {
             studentService.createNewStudent(student);
             return Response.ok(student).build();
         } catch (Exception e) {
-            throw new CustomException("There was an error when creating a new student");
+            throw new CustomException("{\"There was an error when creating a new student\"}");
         }
     }
 
