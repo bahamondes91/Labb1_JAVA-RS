@@ -1,10 +1,12 @@
 package se.iths.rest;
 
 
+import se.iths.entity.Subject;
 import se.iths.exceptions.CustomException;
 import se.iths.entity.Student;
 import se.iths.service.StudentService;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 
 import javax.ws.rs.*;
@@ -19,6 +21,7 @@ public class StudentRest {
 
     @Inject
     StudentService studentService;
+
 
     @Path("new")
     @POST

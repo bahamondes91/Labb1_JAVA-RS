@@ -36,7 +36,7 @@ public class SubjectRest {
     @Path("getall")
     @GET
     public Response getAllStudentsAndOneTeacher() {
-        List<Teacher> foundStudentsAndTeacher = subjectService.getAllStudentsAndOneTeacher();
+        List<Subject> foundStudentsAndTeacher = subjectService.getAllStudentsAndOneTeacher();
         String message = "{\"List is empty \"}";
 
         if ((long) foundStudentsAndTeacher.size() == 0) {

@@ -20,18 +20,12 @@ public class SubjectService {
     }
 
     public Subject createSubject(Subject subject) {
-
-        //Adding Students for Testing
-       subject.addStudent(new Student("Anna", "Sjöblom"));
-        subject.addTeacher(new Teacher("Karl","brutal"));
-        //  subject.addStudent(new Student("Bert","Olof"));
-
         entityManager.persist(subject);
         return subject;
     }
 
-    public List<Teacher> getAllStudentsAndOneTeacher() {
-        return entityManager.createQuery("SELECT i from Teacher i inner join Student a on i.id = a.id", Teacher.class).getResultList();
+    public List<Subject> getAllStudentsAndOneTeacher() {
+        return entityManager.createQuery("SELECT i from Subject i ", Subject.class).getResultList();
     }
 
 

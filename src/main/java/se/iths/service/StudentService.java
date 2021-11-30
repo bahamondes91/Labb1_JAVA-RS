@@ -2,6 +2,8 @@ package se.iths.service;
 
 
 import se.iths.entity.Student;
+import se.iths.entity.Subject;
+import se.iths.entity.Teacher;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,7 +20,6 @@ public class StudentService {
         entityManager.persist(student);
 
     }
-
 
     public Student updateStudentByName(Long id, String lastName) {
         Student findStudent = entityManager.find(Student.class, id);

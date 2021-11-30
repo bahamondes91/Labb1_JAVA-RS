@@ -4,10 +4,8 @@ package se.iths.entity;
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Student {
@@ -21,8 +19,9 @@ public class Student {
     private String lastName;
     private String email;
     private String phoneNumber;
+
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private List<Subject> subject;
+    private List<Subject> subjects = new ArrayList<>();
 
     public Student(String firstName, String lastName) {
         this.firstName = firstName;
@@ -33,12 +32,17 @@ public class Student {
     public Student() {
     }
 
-    public List<Subject> getSubject() {
-        return subject;
+    public void addSubject(Subject subject){
+        subjects.add(subject);
+        subject.getStudents().add(this);
+    }
+    @JsonbTransient
+    public List<Subject> getSubjects() {
+        return subjects;
     }
 
-    public void setSubject(List<Subject> subject) {
-        this.subject = subject;
+    public void setSubjects(List<Subject> subject) {
+        this.subjects = subject;
     }
 
 

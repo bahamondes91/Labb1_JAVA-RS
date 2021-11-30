@@ -1,6 +1,5 @@
 package se.iths.service;
 
-import se.iths.entity.Student;
 import se.iths.entity.Teacher;
 
 import javax.persistence.EntityManager;
@@ -14,12 +13,11 @@ public class TeacherService {
     @PersistenceContext
     EntityManager entityManager;
 
-    public Teacher findTeacherById(Long id){
+    public Teacher findTeacherById(Long id) {
         return entityManager.find(Teacher.class, id);
     }
 
-    public Teacher createTeacher(Teacher teacher){
-
+    public Teacher createTeacher(Teacher teacher) {
         entityManager.persist(teacher);
         return teacher;
     }

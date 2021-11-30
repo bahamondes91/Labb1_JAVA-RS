@@ -16,21 +16,26 @@ public class Subject {
     private String grade;
 
 
-    @ManyToMany(mappedBy = "subject")
+    @ManyToMany(mappedBy = "subjects", cascade = CascadeType.PERSIST)
     private List<Student> students = new ArrayList<>();
-    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
-    private  List<Teacher> teachers = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Teacher teachers;
 
 
+    public Subject(String name, String grade) {
+        this.name = name;
+        this.grade = grade;
+    }
+
+    public Subject() {
+    }
 
     public void addStudent(Student student) {
         students.add(student);
-        student.getSubject().add(this);
+        student.getSubjects().add(this);
     }
-    public void addTeacher(Teacher teacher) {
-        teachers.add(teacher);
-        teacher.setSubject(this);
-    }
+
 
 
 
@@ -57,12 +62,17 @@ public class Subject {
     public void setGrade(String grade) {
         this.grade = grade;
     }
-    @JsonbTransient
-    public List<Teacher> getTeachers() {
+
+    public void setTeachers(Teacher teachers) {
+        this.teachers = teachers;
+    }
+
+
+    public Teacher getTeachers() {
         return teachers;
     }
 
-    @JsonbTransient
+
     public List<Student> getStudents() {
         return students;
     }
