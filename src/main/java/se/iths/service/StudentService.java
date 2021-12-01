@@ -32,6 +32,11 @@ public class StudentService {
         return entityManager.find(Student.class, id);
     }
 
+    public List<Student> getStudentByLastName(String lastName) {
+        return entityManager.createQuery("SELECT i FROM Student i WHERE i.lastName LIKE :lastName", Student.class)
+                .setParameter("lastName", lastName).getResultList();
+    }
+
     public List<Student> getAllStudents() {
         return entityManager.createQuery("SELECT i from Student i", Student.class).getResultList();
     }

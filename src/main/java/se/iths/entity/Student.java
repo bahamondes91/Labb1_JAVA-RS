@@ -16,8 +16,11 @@ public class Student {
     @NotEmpty
     @Size(min = 2)
     private String firstName;
+    @NotEmpty
     private String lastName;
+    @NotEmpty
     private String email;
+    @Size(min = 2)
     private String phoneNumber;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})

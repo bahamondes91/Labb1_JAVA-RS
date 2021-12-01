@@ -21,7 +21,7 @@ public class TeacherRest {
     @Inject
     TeacherService teacherService;
 
-    @Path("")
+    @Path("new")
     @POST
     public Response createTeacher(Teacher teacher) {
         try {

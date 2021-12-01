@@ -4,6 +4,7 @@ package se.iths.rest;
 import se.iths.entity.Subject;
 import se.iths.exceptions.CustomException;
 import se.iths.entity.Student;
+import se.iths.exceptions.StudentNotFoundException;
 import se.iths.service.StudentService;
 
 import javax.annotation.security.RolesAllowed;
@@ -35,20 +36,34 @@ public class StudentRest {
         }
     }
 
-    @Path("{id}")
+//    @Path("{id}")
+//    @GET
+//    public Response getStudent(@PathParam("id") Long id) {
+//        Student foundStudent = studentService.findStudentById(id);
+//        String message = "{\"ID NOT FOUND \": " + id + " }";
+//
+//        if (foundStudent == null) {
+//            throw new WebApplicationException(Response.status(Response.Status.NOT_FOUND)
+//                    .entity(message)
+//                    .type(MediaType.APPLICATION_JSON)
+//                    .build());
+//        }
+//        return Response.ok(foundStudent).build();
+//
+//    }
+
+
+    @Path("{lastname}")
     @GET
-    public Response getStudent(@PathParam("id") Long id) {
-        Student foundStudent = studentService.findStudentById(id);
-        String message = "{\"ID NOT FOUND \": " + id + " }";
+    public Response getStudentByLastName(@PathParam("lastname") String lastName) {
 
-        if (foundStudent == null) {
-            throw new WebApplicationException(Response.status(Response.Status.NOT_FOUND)
-                    .entity(message)
-                    .type(MediaType.APPLICATION_JSON)
-                    .build());
+        List<Student> FoundStudentByLastName = studentService.getStudentByLastName(lastName);
+        String message = "{\"Could not find student with lastname \": " + lastName + " }";
+        if (FoundStudentByLastName.isEmpty()) {
+            throw new StudentNotFoundException(message);
+        } else {
+            return Response.ok(FoundStudentByLastName).build();
         }
-        return Response.ok(foundStudent).build();
-
     }
 
     @Path("updatename/{id}")

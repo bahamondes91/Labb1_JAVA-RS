@@ -19,7 +19,7 @@ public class SubjectRest {
     @Inject
     SubjectService subjectService;
 
-    @Path("")
+    @Path("new")
     @POST
     public Response createSubject(Subject subject){
        Subject subjectResult = subjectService.createSubject(subject);
