@@ -2,6 +2,11 @@
 
 ENDPOINTS:
 
+KOMPLETTERING: 
+Get student by lastName :      http://localhost:8080/student-management-system/api/v1/student/{Lastname}
+
+
+
 createStudent POST: http://localhost:8080/student-management-system/api/v1/student/new
 
 vid fel: {"Error when creating new student "}
