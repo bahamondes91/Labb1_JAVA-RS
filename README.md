@@ -23,3 +23,9 @@ deleteStudent DELETE: http://localhost:8080/student-management-system/api/v1/stu
 succes: {"ID TO DELETE ": {id}}
 vid fel: {"ID NOT FOUND ": {id}}
 
+
+
+LABB 2  ENDPOINT!
+
+http://localhost:8080/student-management-system/api/v1/subjects/getall
+
